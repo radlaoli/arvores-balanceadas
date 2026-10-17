@@ -12,11 +12,18 @@ struct NO_AVL {
 
 // funções auxiliares
 
-// TODO: static int alt_no(struct NO_AVL* no) {}
+static int alt_no(struct NO_AVL* no) {
+    return no == NULL ? -1 : no->alt;
+}
 
-// TODO: static int fb_no(struct NO_AVL* no) {}
+static int fb_no(struct NO_AVL* no) {
+    return alt_no(no->esq) - alt_no(no->dir);
+}
 
-// TODO: static int maior(int x, int y) {}
+// se for = devolve x, porque tanto faz ser x ou y
+static int maior(int x, int y) {
+    return x >= y ? x : y;
+}
 
 // TODO: static void rotacaoLL(AVL* raiz) {}
 
