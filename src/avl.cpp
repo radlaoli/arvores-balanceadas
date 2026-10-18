@@ -70,7 +70,15 @@ int avl_consulta(AVL* raiz, int valor) {
     return atual == NULL ? 0 : 1;
 }
 
-// TODO: void avl_emOrdem(AVL* raiz) {}
+// começa a imprimir da folha mais a esquerda e termina na folha mais a direita
+void avl_emOrdem(AVL* raiz) {
+    if (raiz == NULL || *raiz == NULL) return;
+
+    struct NO_AVL * no = *raiz;
+    avl_emOrdem(&no->esq);
+    printf("%d ", no->info);
+    avl_emOrdem(&no->dir);
+}
 
 // TODO: void avl_imprime(AVL* raiz) {}
 
