@@ -35,7 +35,11 @@ static int maior(int x, int y) {
 
 // TODO: static void balanceia(AVL* raiz) {}
 
-// TODO: static struct NO_AVL* procuraMenor(struct NO_AVL* no) {}
+static struct NO_AVL* procuraMenor(struct NO_AVL* no) {
+    while (no->esq != NULL)
+        no = no->esq;     
+    return no;
+}
 
 // TODO: static void imprime_no(struct NO_AVL* no, int nivel) {}
 
@@ -52,7 +56,19 @@ AVL* avl_cria(void) {
 
 // TODO: int avl_remove(AVL* raiz, int valor) {}
 
-// TODO: int avl_consulta(AVL* raiz, int valor) {}
+int avl_consulta(AVL* raiz, int valor) {
+    if (raiz == NULL) return 0;
+
+    struct NO_AVL* atual = *raiz;
+
+    while (atual != NULL && atual->info != valor)
+    {
+        if (valor < atual->info) atual = atual->esq;
+        else atual = atual->dir; 
+    }
+
+    return atual == NULL ? 0 : 1;
+}
 
 // TODO: void avl_emOrdem(AVL* raiz) {}
 
