@@ -41,7 +41,12 @@ static int maior(int x, int y) {
 
 // funções públicas
 
-// TODO: AVL* avl_cria(void) {}
+AVL* avl_cria(void) {
+    AVL *nova_avl = (AVL *) malloc(sizeof(AVL));
+    if (nova_avl != NULL) // inicialmente é nula até atribuir uma raiz a ela
+        *nova_avl = NULL;
+    return nova_avl;
+}
 
 // TODO: int avl_insere(AVL* raiz, int valor) {}
 
@@ -53,4 +58,6 @@ static int maior(int x, int y) {
 
 // TODO: void avl_imprime(AVL* raiz) {}
 
-// TODO: int avl_altura(AVL* raiz) {}
+int avl_altura(AVL* raiz) {
+    return raiz == NULL ? -1 : alt_no(*raiz);
+}
