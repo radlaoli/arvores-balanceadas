@@ -83,7 +83,14 @@ static struct NO_AVL* procuraMenor(struct NO_AVL* no) {
     return no;
 }
 
-// TODO: static void imprime_no(struct NO_AVL* no, int nivel) {}
+// a impressão da arvore deitada
+static void imprime_no(struct NO_AVL* no, int nivel) {
+    if (no == NULL) return;
+    imprime_no(no->dir, nivel + 1);
+    for (int i = 0; i < nivel; i++) printf("        ");
+    printf("%d [h=%d fb=%d]\n", no->info, no->alt, fb_no(no));
+    imprime_no(no->esq, nivel + 1);
+}
 
 // funções públicas
 
