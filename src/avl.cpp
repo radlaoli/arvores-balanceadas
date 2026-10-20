@@ -25,15 +25,57 @@ static int maior(int x, int y) {
     return x >= y ? x : y;
 }
 
-// TODO: static void rotacaoLL(AVL* raiz) {}
+static void atualizaAltura(struct NO_AVL* no) {
+    no->alt = 1 + maior(alt_no(no->esq), alt_no(no->dir));
+}
 
-// TODO: static void rotacaoRR(AVL* raiz) {}
+// o filho esquerdo B sobe
+static void rotacaoLL(AVL* raiz) {
+    struct NO_AVL* A = *raiz;
+    struct NO_AVL* B = A->esq;
+    A->esq = B->dir;      // a subárvore direita de B passa para A
+    B->dir = A;           // A desce para a direita de B
+    //primeiro atualiza o que desceu, depois o que subiu
+    atualizaAltura(A);
+    atualizaAltura(B);    
+    *raiz = B;
+}
 
-// TODO: static void rotacaoLR(AVL* raiz) {}
+static void rotacaoRR(AVL* raiz) {
+    struct NO_AVL* A = *raiz;
+    struct NO_AVL* B = A->dir;
+    A->dir = B->esq;
+    B->esq = A;
+    atualizaAltura(A);
+    atualizaAltura(B);
+    *raiz = B;
+}
 
-// TODO: static void rotacaoRL(AVL* raiz) {}
+// Jas rotações duplas é só reaproveitar as simples
+static void rotacaoLR(AVL* raiz) {
+    rotacaoRR(&(*raiz)->esq);
+    rotacaoLL(raiz);
+}
 
-// TODO: static void balanceia(AVL* raiz) {}
+static void rotacaoRL(AVL* raiz) {
+    rotacaoLL(&(*raiz)->dir);
+    rotacaoRR(raiz); 
+}
+
+// Escolhe a rotação
+// sinais iguais -> simples, sinais diferentes -> dupla
+static void balanceia(AVL* raiz) {
+    struct NO_AVL* no = *raiz;
+    int fb = fb_no(no);
+
+    if (fb == 2) {                         // pesada à esquerda
+        if (fb_no(no->esq) >= 0) rotacaoLL(raiz);
+        else rotacaoLR(raiz);
+    } else if (fb == -2) {                 // pesada à direita
+        if (fb_no(no->dir) <= 0) rotacaoRR(raiz);
+        else rotacaoRL(raiz);
+    }
+}
 
 static struct NO_AVL* procuraMenor(struct NO_AVL* no) {
     while (no->esq != NULL)
