@@ -101,9 +101,61 @@ AVL* avl_cria(void) {
     return nova_avl;
 }
 
-// TODO: int avl_insere(AVL* raiz, int valor) {}
+// insere e rebalanceia na volta da recursão
+int avl_insere(AVL* raiz, int valor) {
+    if (raiz == NULL) return 0;
 
-// TODO: int avl_remove(AVL* raiz, int valor) {}
+    if (*raiz == NULL) {// cria o nó no lugar correto
+        struct NO_AVL* novo = (struct NO_AVL*) malloc(sizeof(struct NO_AVL));
+        if (novo == NULL) return 0;
+        novo->info = valor;
+        novo->alt = 0;// nó novo é folha
+        novo->esq = NULL;
+        novo->dir = NULL;
+        *raiz = novo;
+        return 1;
+    }
+
+    struct NO_AVL* no = *raiz;
+    int res;
+    if (valor == no->info) return 0; //se for repetido não insere
+    else if (valor < no->info) res = avl_insere(&no->esq, valor);
+    else res = avl_insere(&no->dir, valor);
+
+    if (res) {  //corrige altura e balanceia
+        atualizaAltura(*raiz);
+        balanceia(raiz);
+    }
+    return res;
+}
+
+// remove o valor e rebalanceia na volta da recursão
+int avl_remove(AVL* raiz, int valor) {
+    if (raiz == NULL || *raiz == NULL) return 0;
+
+    struct NO_AVL* no = *raiz;
+    int res;
+
+    if (valor < no->info) res = avl_remove(&no->esq, valor);
+    else if (valor > no->info) res = avl_remove(&no->dir, valor);
+    else {                                       
+        if (no->esq == NULL || no->dir == NULL) {  // 0 ou 1 filho
+            *raiz = (no->esq != NULL) ? no->esq : no->dir;
+            free(no);
+            return 1;
+        }
+        //quando tem 2 filhos copia o sucessor e remove ele da direita
+        struct NO_AVL* sucessor = procuraMenor(no->dir);
+        no->info = sucessor->info;
+        res = avl_remove(&no->dir, sucessor->info);
+    }
+
+    if (res && *raiz != NULL) {
+        atualizaAltura(*raiz);
+        balanceia(raiz);
+    }
+    return res;
+}
 
 int avl_consulta(AVL* raiz, int valor) {
     if (raiz == NULL) return 0;
