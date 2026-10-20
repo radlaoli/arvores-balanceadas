@@ -181,7 +181,13 @@ void avl_emOrdem(AVL* raiz) {
     avl_emOrdem(&no->dir);
 }
 
-// TODO: void avl_imprime(AVL* raiz) {}
+void avl_imprime(AVL* raiz) {
+    if (raiz == NULL || *raiz == NULL) {
+        printf("arvore vazia\n");
+        return;
+    }
+    imprime_no(*raiz, 0);
+}
 
 int avl_altura(AVL* raiz) {
     return raiz == NULL ? -1 : alt_no(*raiz);
