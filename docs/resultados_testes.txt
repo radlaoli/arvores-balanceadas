@@ -1,0 +1,86 @@
+========================= TESTES FUNCIONAIS =========================
+
+--- AVL ---
+  [PASSOU] AVL          arvore vazia: altura -1
+  [PASSOU] AVL          arvore vazia: 0 nos
+  [PASSOU] AVL          arvore vazia: busca nao encontra
+  [PASSOU] AVL          arvore vazia: remocao retorna 0 sem travar
+  [PASSOU] AVL          arvore vazia: propriedades validas
+  [PASSOU] AVL          um elemento: insercao do 42
+  [PASSOU] AVL          um elemento: altura 0 e 1 no
+  [PASSOU] AVL          um elemento: busca encontra o 42
+  [PASSOU] AVL          um elemento: busca nao encontra o 7
+  [PASSOU] AVL          um elemento: propriedades validas
+  [PASSOU] AVL          um elemento: remocao deixa a arvore vazia
+  [PASSOU] AVL          valor repetido: nao e inserido de novo
+  [PASSOU] AVL          valor repetido: propriedades validas
+  [PASSOU] AVL          insercao crescente (10000): propriedades apos cada insercao
+  [PASSOU] AVL          busca crescente: todos os 10000 elementos existentes encontrados
+  [PASSOU] AVL          busca crescente: elementos inexistentes nao encontrados
+  [PASSOU] AVL          insercao decrescente (10000): propriedades apos cada insercao
+  [PASSOU] AVL          busca decrescente: todos os 10000 elementos existentes encontrados
+  [PASSOU] AVL          busca decrescente: elementos inexistentes nao encontrados
+  [PASSOU] AVL          insercao aleatorio (10000): propriedades apos cada insercao
+  [PASSOU] AVL          busca aleatorio: todos os 10000 elementos existentes encontrados
+  [PASSOU] AVL          busca aleatorio: elementos inexistentes nao encontrados
+  [PASSOU] AVL          remocao de folha (0 filhos) (valor 6619)
+  [PASSOU] AVL          remocao de no com 1 filho (valor 7157)
+  [PASSOU] AVL          remocao de no com 2 filhos (valor 5804)
+  [PASSOU] AVL          remocao de elemento inexistente: retorna 0 e nao altera a arvore
+  [PASSOU] AVL          remover todos os 1000 elementos: propriedades apos cada remocao
+  [PASSOU] AVL          5000 remocoes em arvore de 10000: propriedades apos cada remocao
+
+--- Rubro-Negra ---
+  [PASSOU] Rubro-Negra  arvore vazia: altura -1
+  [PASSOU] Rubro-Negra  arvore vazia: 0 nos
+  [PASSOU] Rubro-Negra  arvore vazia: busca nao encontra
+  [PASSOU] Rubro-Negra  arvore vazia: remocao retorna 0 sem travar
+  [PASSOU] Rubro-Negra  arvore vazia: propriedades validas
+  [PASSOU] Rubro-Negra  um elemento: insercao do 42
+  [PASSOU] Rubro-Negra  um elemento: altura 0 e 1 no
+  [PASSOU] Rubro-Negra  um elemento: busca encontra o 42
+  [PASSOU] Rubro-Negra  um elemento: busca nao encontra o 7
+  [PASSOU] Rubro-Negra  um elemento: propriedades validas
+  [PASSOU] Rubro-Negra  um elemento: remocao deixa a arvore vazia
+  [PASSOU] Rubro-Negra  valor repetido: nao e inserido de novo
+  [PASSOU] Rubro-Negra  valor repetido: propriedades validas
+  [PASSOU] Rubro-Negra  insercao crescente (10000): propriedades apos cada insercao
+  [PASSOU] Rubro-Negra  busca crescente: todos os 10000 elementos existentes encontrados
+  [PASSOU] Rubro-Negra  busca crescente: elementos inexistentes nao encontrados
+  [PASSOU] Rubro-Negra  insercao decrescente (10000): propriedades apos cada insercao
+  [PASSOU] Rubro-Negra  busca decrescente: todos os 10000 elementos existentes encontrados
+  [PASSOU] Rubro-Negra  busca decrescente: elementos inexistentes nao encontrados
+  [PASSOU] Rubro-Negra  insercao aleatorio (10000): propriedades apos cada insercao
+  [PASSOU] Rubro-Negra  busca aleatorio: todos os 10000 elementos existentes encontrados
+  [PASSOU] Rubro-Negra  busca aleatorio: elementos inexistentes nao encontrados
+  [PASSOU] Rubro-Negra  remocao de folha (0 filhos) (valor 6619)
+  [PASSOU] Rubro-Negra  remocao de no com 1 filho (valor 133)
+  [PASSOU] Rubro-Negra  remocao de no com 2 filhos (valor 5804)
+  [PASSOU] Rubro-Negra  remocao de elemento inexistente: retorna 0 e nao altera a arvore
+  [PASSOU] Rubro-Negra  remover todos os 1000 elementos: propriedades apos cada remocao
+  [PASSOU] Rubro-Negra  5000 remocoes em arvore de 10000: propriedades apos cada remocao
+
+Resultado: 56 testes passaram, 0 falharam.
+
+========================= ANALISE COMPARATIVA: INSERCAO =========================
+conjunto          n |  h AVL   h RN |  rot AVL   rot RN recol RN |  h min
+---------------------------------------------------------------------------------
+crescente       100 |      6     10 |       93       89      445 |      6
+crescente      1000 |      9     16 |      990      983     4909 |      9
+crescente     10000 |     13     23 |     9986     9976    49877 |     13
+decrescente     100 |      6     10 |       93       89      445 |      6
+decrescente    1000 |      9     16 |      990      983     4909 |      9
+decrescente   10000 |     13     23 |     9986     9976    49877 |     13
+aleatorio       100 |      7      7 |       57       55      218 |      6
+aleatorio      1000 |     11     11 |      704      603     2341 |      9
+aleatorio     10000 |     15     16 |     6948     5893    23268 |     13
+(h = altura final; rot = rotacoes simples; recol = nos recoloridos; h min = piso(log2 n))
+
+========================= ANALISE COMPARATIVA: REMOCAO ==========================
+Arvore com 10000 elementos aleatorios; depois 5000 remocoes (tests/dados/remocoes.txt)
+arvore       |    h antes   h depois | rotacoes recolor.
+---------------------------------------------------------------------------------
+AVL          |         15         14 |     1883        0
+Rubro-Negra  |         16         15 |     1802     7755
+
+Tabela salva em saida/comparacao.csv

@@ -1,0 +1,11 @@
+fase,conjunto,n,altura_avl,altura_rn,rotacoes_avl,rotacoes_rn,trocas_cor_rn,tempo_ms_avl,tempo_ms_rn,altura_minima
+insercao,crescente,100,6,6,93,94,91,0.010,0.009,6
+insercao,crescente,1000,9,9,990,991,985,0.082,0.107,9
+insercao,crescente,10000,13,13,9986,9987,9982,1.076,1.589,13
+insercao,decrescente,100,6,8,93,91,91,0.008,0.008,6
+insercao,decrescente,1000,9,14,990,985,985,0.118,0.105,9
+insercao,decrescente,10000,13,17,9986,9982,9982,1.162,2.387,13
+insercao,aleatorio,100,7,7,57,114,74,0.015,0.013,6
+insercao,aleatorio,1000,11,12,704,1236,743,0.190,0.158,9
+insercao,aleatorio,10000,15,17,6948,11880,7456,2.536,2.091,13
+remocao,aleatorio,5000,14,16,1883,28313,57600,,,
