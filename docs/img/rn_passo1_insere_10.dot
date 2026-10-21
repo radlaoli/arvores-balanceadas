@@ -1,0 +1,4 @@
+digraph RN {
+  node [shape=circle, style=filled, fontcolor=white, fontname="Helvetica"];
+  n10 [label="10", fillcolor=black];
+}

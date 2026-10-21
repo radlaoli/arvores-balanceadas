@@ -1,0 +1,7 @@
+digraph AVL {
+  node [shape=circle, fontname="Helvetica"];
+  n10 [label="10\nfb=-1"];
+  e10 [style=invis]; n10 -> e10 [style=invis];
+  n10 -> n20;
+  n20 [label="20\nfb=0"];
+}

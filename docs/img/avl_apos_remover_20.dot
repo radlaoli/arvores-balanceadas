@@ -1,0 +1,15 @@
+digraph AVL {
+  node [shape=circle, fontname="Helvetica"];
+  n5 [label="5\nfb=0"];
+  n5 -> n1;
+  n5 -> n25;
+  n1 [label="1\nfb=-1"];
+  e1 [style=invis]; n1 -> e1 [style=invis];
+  n1 -> n2;
+  n2 [label="2\nfb=0"];
+  n25 [label="25\nfb=0"];
+  n25 -> n10;
+  n25 -> n30;
+  n10 [label="10\nfb=0"];
+  n30 [label="30\nfb=0"];
+}
