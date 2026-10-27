@@ -1,7 +1,7 @@
 # Árvores Balanceadas: AVL e Rubro-Negra
 
 Trabalho da Unidade II de IMD0039 – Estruturas de Dados Básicas II.
-
+Autora: Radla Oliveira
 ## Dependências
 
 - Compilador C++17 (g++; no Windows, MinGW-w64). Só é necessário para recompilar.
