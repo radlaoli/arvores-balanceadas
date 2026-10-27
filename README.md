@@ -13,15 +13,13 @@ Autora: Radla Oliveira
 A versão compilada está em `bin/`:
 
 ```bash
-.\bin\arvores.exe    # Windows
-./bin/arvores        # Linux
+./bin/arvores   
 ```
 
 Testes automatizados:
 
 ```bash
-.\bin\testes.exe     # Windows
-./bin/testes         # Linux
+./bin/testes  
 ```
 
 Para recompilar: `make`. Sem `make`:
